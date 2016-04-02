@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<units size='1'>
+  <unit id='org.openhab.binding.fems' version='2.0.0.201602181011'>
+    <update id='org.openhab.binding.fems' range='[0.0.0,2.0.0.201602181011)' severity='0'/>
+    <properties size='5'>
+      <property name='org.eclipse.equinox.p2.name' value='FEMS Hardware Layer'/>
+      <property name='org.eclipse.equinox.p2.provider' value='FENECON'/>
+      <property name='maven-groupId' value='org.openhab.binding'/>
+      <property name='maven-artifactId' value='org.openhab.binding.fems'/>
+      <property name='maven-version' value='2.0.0-SNAPSHOT'/>
+    </properties>
+    <provides size='3'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.openhab.binding.fems' version='2.0.0.201602181011'/>
+      <provided namespace='osgi.bundle' name='org.openhab.binding.fems' version='2.0.0.201602181011'/>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+    </provides>
+    <requires size='10'>
+      <required namespace='java.package' name='com.google.common.collect' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.config.core' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.core.events' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.core.items.events' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.core.library.types' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.core.thing' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.core.thing.binding' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.smarthome.core.types' range='0.0.0'/>
+      <required namespace='java.package' name='org.osgi.framework' range='1.8.0'/>
+      <required namespace='java.package' name='org.slf4j' range='0.0.0'/>
+    </requires>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='org.openhab.binding.fems' version='2.0.0.201602181011'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: org.openhab.binding.fems;singleton:=true&#xA;Bundle-Version: 2.0.0.201602181011&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+</units>

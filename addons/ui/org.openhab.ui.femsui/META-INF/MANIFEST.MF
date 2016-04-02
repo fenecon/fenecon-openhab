@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FEMS UI
+Bundle-SymbolicName: org.openhab.ui.femsui
+Bundle-Version: 2.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Service-Component: OSGI-INF/dashboardtile.xml,
+ OSGI-INF/femsuiapp.xml,
+ OSGI-INF/femsuiresource.xml
+Import-Package: javax.servlet,
+ javax.servlet.http,
+ javax.ws.rs;version="2.0.1",
+ javax.ws.rs.core;version="2.0.1",
+ org.apache.commons.lang;version="2.6.0",
+ org.eclipse.smarthome.io.rest,
+ org.openhab.ui.dashboard,
+ org.osgi.service.component;version="1.2.2",
+ org.osgi.service.http;version="1.2.1"
+Require-Bundle: org.slf4j.api

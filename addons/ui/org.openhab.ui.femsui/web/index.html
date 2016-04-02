@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>FEMS UI</title>
+		<link href="lib/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="navbar navbar-inverse" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">FEMS - FENECON Energie Management System</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Programmierung</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<form>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<textarea id="editor" rows="10" cols="50" class="form-control"></textarea> 
+							</div>
+							<div class="panel-footer clearfix">
+								<div class="pull-right">
+									<button id="resetBtn" type="button" class="btn btn-default">Zurücksetzen</button>
+									<button id="speichernBtn" type="button" class="btn btn-primary">Speichern</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+					</div>
+					<div class="col-sm-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">Variable einfügen</div>
+							<div class="panel-body">
+								<ul>
+									<a id="vSOC"><li>Batterie Ladezustand</li></a>
+									<a id="vFeldbusDO1"><li>FEMS Feldbus Digitalausgang 1</li></a>
+									<a id="vFunkSw1"><li>FEMS Funk Zwischenstecker 1</li></a>
+								</ul>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">Beispielprogramm einfügen</div>
+							<div class="panel-body">
+								<ul>
+									<a id="beispiel1"><li>Regel Grundgerüst</li></a>
+									<a id="beispiel2"><li>FEMS Feldbus Digitalausgang bei hohem Batterieladezustand einschalten</li></a>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<script src="lib/jquery/jquery-2.1.4.min.js"></script>
+		<script src="lib/codemirror-5.7/lib/codemirror.js"></script>
+		<link rel="stylesheet" href="lib/codemirror-5.7/lib/codemirror.css">
+		<script src="lib/codemirror-5.7/mode/javascript/javascript.js"></script>
+		<script>
+			/* CodeMirror */
+			var codeMirror = CodeMirror.fromTextArea(editor, {
+				lineNumbers: true,
+				viewportMargin: Infinity
+			});
+			/* Datei laden */
+			loadFile = function() {
+				$.get("/rest/fems/rule", function( data ) {
+					codeMirror.setValue(data);
+				});
+			}
+			loadFile();
+			$("#resetBtn").click(function() {
+				loadFile();
+			});
+			/* Datei speichern */
+			$("#speichernBtn").click(function() {
+				$.post("/rest/fems/rule", { text: codeMirror.getValue() })
+				.done(function(data) {
+					alert("Regel wurde gespeichert.");
+				})
+				.fail(function(data) {
+					alert(data.responseText);
+				});
+			});
+			/* Variablen */
+			var vSOC = "BSMU_Battery_Stack_Overall_SOC.state";
+			var vFeldbusDO1 = "Feldbus_DigitalOutput_1.sendCommand(ON)";
+			var vFunkSw1 = "Funk_Sw1.sendCommand(ON)";
+			$("#vSOC").click(function() { codeMirror.replaceSelection(vSOC) });
+			$("#vFeldbusDO1").click(function() { codeMirror.replaceSelection(vFeldbusDO1) });
+			$("#vFunkSw1").click(function() { codeMirror.replaceSelection(vFunkSw1) });
+			/* Codebeispiele */
+			var beispiel1 = 'rule "Regel"\n' +
+				'when\n' +
+				'	Item BSMU_Battery_Stack_Overall_SOC received update\n' +
+				'then\n' +
+				'	\n' +
+				'end'
+			var beispiel2 = 'rule "Regel"\n' +
+				'when\n' +
+				'	Item BSMU_Battery_Stack_Overall_SOC received update\n' +
+				'then\n' +
+				'	if(BSMU_Battery_Stack_Overall_SOC.state > 95) {\n' +
+				'		logInfo("fems", "SOC " + BSMU_Battery_Stack_Overall_SOC.state + " % > 95 % => EINschalten")\n' +
+				'		Feldbus_DigitalOutput_1.sendCommand(ON)\n' +
+				'	} else if(BSMU_Battery_Stack_Overall_SOC.state < 91) {\n' +
+				'		logInfo("fems", "SOC " + BSMU_Battery_Stack_Overall_SOC.state + " % < 91 % => AUSschalten")\n' +
+				'		Feldbus_DigitalOutput_1.sendCommand(OFF)\n' +
+				'	}\n' +
+				'end'
+			$("#beispiel1").click(function() { codeMirror.replaceSelection(beispiel1) });
+			$("#beispiel2").click(function() { codeMirror.replaceSelection(beispiel2) });
+		</script>
+		<style  type="text/css">
+			.CodeMirror {
+				border: 1px solid #eee;
+				height: auto;
+			}
+		</style>
+	</body>
+</html>

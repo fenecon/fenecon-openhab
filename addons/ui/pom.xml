@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="MACROMAN"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <parent>
+    <groupId>org.openhab.addons</groupId>
+    <artifactId>pom</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.openhab.ui</groupId>
+  <artifactId>pom</artifactId>
+
+  <name>openHAB UI Components</name>
+
+  <packaging>pom</packaging>
+
+  <modules>
+	<module>org.openhab.ui.femsdessui</module>
+	<module>org.openhab.ui.femsfieldbusui</module>
+	<module>org.openhab.ui.femskebaui</module>
+	<module>org.openhab.ui.femsminiesui</module>
+	<module>org.openhab.ui.femsui</module>
+	<module>org.openhab.ui.femsv1ui</module>
+	<module>org.openhab.ui.femsweatherui</module>
+	<module>org.openhab.ui.femswirelessui</module>
+  </modules>
+
+</project>

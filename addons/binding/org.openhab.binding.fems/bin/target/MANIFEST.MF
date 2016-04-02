@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Service-Component: OSGI-INF/*
+Bundle-Vendor: FENECON
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,lib/bulldog.beagleboneblack.hardfp.jar
+Bundle-Version: 2.0.0.201602181011
+Bundle-Name: FEMS Hardware Layer
+Bundle-Activator: org.openhab.binding.fems.internal.Activator
+Bundle-ManifestVersion: 2
+Import-Package: com.google.common.collect,org.eclipse.smarthome.config
+ .core,org.eclipse.smarthome.core.events,org.eclipse.smarthome.core.it
+ ems.events,org.eclipse.smarthome.core.library.types,org.eclipse.smart
+ home.core.thing,org.eclipse.smarthome.core.thing.binding,org.eclipse.
+ smarthome.core.types,org.osgi.framework;version="1.8.0",org.slf4j
+Bundle-SymbolicName: org.openhab.binding.fems;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+

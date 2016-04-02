@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="femsv1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+        xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+    <!-- Sample Thing Type -->
+    <thing-type id="fems">
+        <label>FEMS I/O</label>
+        <description>Control FEMS I/O interfaces</description>
+
+        <channels>        
+            <channel id="LCD_1" typeId="LCD_1" />
+            <channel id="LCD_2" typeId="LCD_2" />
+        
+            <channel id="RelayOutput_1" typeId="RelayOutput_1" />
+            <channel id="RelayOutput_2" typeId="RelayOutput_2" />
+            <channel id="RelayOutput_3" typeId="RelayOutput_3" />
+            <channel id="RelayOutput_4" typeId="RelayOutput_4" />
+            
+            <channel id="AnalogOutput_1" typeId="AnalogOutput_1" />
+            <channel id="AnalogOutput_2" typeId="AnalogOutput_2" />
+            <channel id="AnalogOutput_3" typeId="AnalogOutput_3" />
+            <channel id="AnalogOutput_4" typeId="AnalogOutput_4" />
+            <channel id="AnalogOutput_1_Volt" typeId="AnalogOutput_1_Volt" />
+            <channel id="AnalogOutput_2_Volt" typeId="AnalogOutput_2_Volt" />
+            <channel id="AnalogOutput_3_Volt" typeId="AnalogOutput_3_Volt" />
+            <channel id="AnalogOutput_4_Volt" typeId="AnalogOutput_4_Volt" />
+            
+            <channel id="DigitalInput_1" typeId="DigitalInput_1" />
+            <channel id="DigitalInput_2" typeId="DigitalInput_2" />
+            <channel id="DigitalInput_3" typeId="DigitalInput_3" />
+            <channel id="DigitalInput_4" typeId="DigitalInput_4" />
+        </channels>
+    </thing-type>
+    
+    <channel-type id="LCD_1"><item-type>String</item-type><label>LCD 1</label></channel-type>
+    <channel-type id="LCD_2"><item-type>String</item-type><label>LCD 2</label></channel-type>
+    
+    <channel-type id="RelayOutput_1"><item-type>Switch</item-type><label>Relay Output 1</label></channel-type>
+    <channel-type id="RelayOutput_2"><item-type>Switch</item-type><label>Relay Output 2</label></channel-type>
+    <channel-type id="RelayOutput_3"><item-type>Switch</item-type><label>Relay Output 3</label></channel-type>
+    <channel-type id="RelayOutput_4"><item-type>Switch</item-type><label>Relay Output 4</label></channel-type>
+    
+    <channel-type id="AnalogOutput_1"><item-type>Dimmer</item-type><label>Analog Output 1</label></channel-type>
+    <channel-type id="AnalogOutput_2"><item-type>Dimmer</item-type><label>Analog Output 2</label></channel-type>
+    <channel-type id="AnalogOutput_3"><item-type>Dimmer</item-type><label>Analog Output 3</label></channel-type>
+    <channel-type id="AnalogOutput_4"><item-type>Dimmer</item-type><label>Analog Output 4</label></channel-type>
+    <channel-type id="AnalogOutput_1_Volt"><item-type>Switch</item-type><label>Analog Output 1 Volt</label></channel-type>
+    <channel-type id="AnalogOutput_2_Volt"><item-type>Switch</item-type><label>Analog Output 2 Volt</label></channel-type>
+    <channel-type id="AnalogOutput_3_Volt"><item-type>Switch</item-type><label>Analog Output 3 Volt</label></channel-type>
+    <channel-type id="AnalogOutput_4_Volt"><item-type>Switch</item-type><label>Analog Output 4 Volt</label></channel-type>
+    
+    <channel-type id="DigitalInput_1"><item-type>Contact</item-type><label>Digital Input 1</label></channel-type>
+    <channel-type id="DigitalInput_2"><item-type>Contact</item-type><label>Digital Input 2</label></channel-type>
+    <channel-type id="DigitalInput_3"><item-type>Contact</item-type><label>Digital Input 3</label></channel-type>
+    <channel-type id="DigitalInput_4"><item-type>Contact</item-type><label>Digital Input 4</label></channel-type>
+</thing:thing-descriptions>

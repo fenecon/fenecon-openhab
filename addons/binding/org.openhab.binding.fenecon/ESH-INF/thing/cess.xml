@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="fems"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+        xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+    <thing-type id="cess">
+        <label>COMMERCIAL-Series (CESS)</label>
+        <description>Connects to a FENECON by BYD COMMERCIAL-Series (DESS) Energy Storage System.</description>
+        <config-description>
+            <parameter name="unitid" type="integer">
+                <label>Unit-ID</label>
+                <description>Specifies the Unit-ID for the CESS system.</description>
+                <default>100</default>
+            </parameter>
+            <parameter name="modbusinterface" type="text">
+                <label>Modbus interface</label>
+                <description>Specifies the interface for the modbus connection.</description>
+                <default>/dev/ttyUSB0</default>
+            </parameter>
+            <parameter name="refresh" type="integer">
+                <label>Refresh interval</label>
+                <description>Specifies the refresh interval in seconds.</description>
+                <default>60</default>
+            </parameter>
+        </config-description>
+    </thing-type>
+    
+</thing:thing-descriptions>

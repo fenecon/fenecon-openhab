@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="fems"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+    xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+    <thing-type id="dess">
+        <label>PRO-Series (DESS)</label>
+        <description>Connects to a FENECON by BYD PRO-Series (DESS) Energy Storage System.</description>
+
+        <channels>
+            <channel id="DESS_System_running_status" typeId="DESS_System_running_status" />
+            <channel id="BSMU_Battery_Stack_Overall_SOC" typeId="BSMU_Battery_Stack_Overall_SOC" />
+            <channel id="PV1_Charger1_Output_Power" typeId="PV_Charger_Output_Power" />
+            <channel id="PV2_Charger2_Output_Power" typeId="PV_Charger_Output_Power" />
+            <!-- TODO: Add all channels -->
+        </channels>
+        
+        <config-description>
+            <parameter name="unitid" type="integer">
+                <label>Unit-ID</label>
+                <description>Specifies the Unit-ID for the DESS system.</description>
+                <default>4</default>
+            </parameter>
+            <parameter name="modbusinterface" type="text">
+                <label>Modbus interface</label>
+                <description>Specifies the interface for the modbus connection.</description>
+                <default>/dev/ttyUSB0</default>
+            </parameter>
+            <parameter name="refresh" type="integer">
+                <label>Refresh interval</label>
+                <description>Specifies the refresh interval in seconds.</description>
+                <default>60</default>
+            </parameter>
+        </config-description>
+    </thing-type>
+ 
+    <channel-type id="DESS_System_running_status">
+        <item-type>String</item-type>
+        <label>System Running Status</label>
+        <state pattern="%s" readOnly="true">
+            <options>
+                <option value="Initialization" />
+                <option value="Standby" />
+                <option value="Starting" />
+                <option value="Running" />
+                <option value="Fault" />
+            </options>
+        </state>
+    </channel-type>   
+    <channel-type id="BSMU_Battery_Stack_Overall_SOC">
+        <item-type>Number</item-type>
+        <label>Battery SOC</label>
+        <state min="0" max="100" pattern="%d %%" readOnly="true" />
+    </channel-type>
+    <channel-type id="PV_Charger_Output_Power">
+        <item-type>Number</item-type>
+        <label>Production</label>
+        <state pattern="%d W" readOnly="true" />
+    </channel-type>
+    
+</thing:thing-descriptions>

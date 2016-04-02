@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.openhab.ui.femsui.internal.FemsUIResource">
+   <implementation class="org.openhab.ui.femsui.internal.FemsUIResource"/>
+   <service>
+      <provide interface="org.openhab.ui.femsui.internal.FemsUIResource"/>
+      <provide interface="org.eclipse.smarthome.io.rest.RESTResource"/>
+   </service>
+</scr:component>
