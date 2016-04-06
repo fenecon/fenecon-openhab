@@ -10,7 +10,9 @@ import org.openhab.binding.fenecon.internal.essprotocol.modbus.ModbusElementRang
 import org.openhab.binding.fenecon.internal.essprotocol.modbus.ModbusItem;
 import org.openhab.binding.fenecon.internal.essprotocol.modbus.OnOffBitItem;
 import org.openhab.binding.fenecon.internal.essprotocol.modbus.PercentageWordItem;
+import org.openhab.binding.fenecon.internal.essprotocol.modbus.SecureDecimalWordItem;
 import org.openhab.binding.fenecon.internal.essprotocol.modbus.StringWordItem;
+import org.openhab.binding.fenecon.internal.essprotocol.modbus.VersionWordItem;
 
 public class ProtocolFactoryHelper {
     public static void generateItemsFile(ArrayList<ModbusElementRange> protocol) {
@@ -19,15 +21,16 @@ public class ProtocolFactoryHelper {
                 if (element instanceof ModbusItem) {
                     ModbusItem item = (ModbusItem) element;
                     String name = item.getName();
-                    if (item instanceof StringWordItem) {
-                        System.out.println(
-                                "String " + name + "\"" + name + " [%s]\" { channel=\"fenecon:dess:f:" + name + "\" }");
-                    } else if (item instanceof PercentageWordItem) {
-                        System.out.println("Dimmer " + name + "\"" + name + " [%d %%]\" { channel=\"fenecon:dess:f:"
+                    if (item instanceof StringWordItem || item instanceof VersionWordItem) {
+                        System.out.println("String " + name + " \"" + name + " [%s]\" { channel=\"fenecon:minies:f:"
                                 + name + "\" }");
-                    } else if (item instanceof DecimalWordItem || item instanceof DecimalDoublewordItem) {
-                        System.out.println(
-                                "Number " + name + "\"" + name + " [%d]\" { channel=\"fenecon:dess:f:" + name + "\" }");
+                    } else if (item instanceof PercentageWordItem) {
+                        System.out.println("Dimmer " + name + "\"" + name + " [%d %%]\" { channel=\"fenecon:minies:f:"
+                                + name + "\" }");
+                    } else if (item instanceof DecimalWordItem || item instanceof DecimalDoublewordItem
+                            || item instanceof SecureDecimalWordItem) {
+                        System.out.println("Number " + name + " \"" + name + " [%d]\" { channel=\"fenecon:minies:f:"
+                                + name + "\" }");
                     } else {
                         System.out.println("Missing: " + name);
                     }
@@ -35,8 +38,8 @@ public class ProtocolFactoryHelper {
                     BitWordElement bitWord = (BitWordElement) element;
                     for (OnOffBitItem bitItem : bitWord.getBitItems()) {
                         String name = bitWord.getName() + "_" + bitItem.getName();
-                        System.out.println(
-                                "Number " + name + "\"" + name + " [%d]\" { channel=\"fenecon:dess:f:" + name + "\" }");
+                        System.out.println("Number " + name + " \"" + name + " [%d]\" { channel=\"fenecon:minies:f:"
+                                + name + "\" }");
                     }
                 }
             }
