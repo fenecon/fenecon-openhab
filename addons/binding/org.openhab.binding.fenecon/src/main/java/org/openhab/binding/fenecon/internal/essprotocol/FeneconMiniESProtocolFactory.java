@@ -583,7 +583,6 @@ public class FeneconMiniESProtocolFactory {
         protocol.add(new ModbusElementRange(30111,
                 /* 30557 */ new StringWordItem("System_Ctrl_Mode_State", "Local Strategy", "Remote Policy")));
 
-        ProtocolFactoryHelper.generateItemsFile(protocol);
         return protocol;
     }
 }
