@@ -26,7 +26,13 @@ public class ShortDecimalWordItem extends DecimalWordItem {
 
     @Override
     public void updateData(Register register) {
-        setState(new DecimalType(
-                new BigDecimal((register.toShort() - delta) * multiplier).setScale(2, BigDecimal.ROUND_HALF_UP)));
+        short value = register.toShort();
+        if (value == 0 && delta != 0) { // avoid e.g. "-10000" as result
+            setState(new DecimalType(0));
+        } else {
+            setState(new DecimalType(
+                    new BigDecimal((value - delta) * multiplier).setScale(2, BigDecimal.ROUND_HALF_UP)));
+        }
+
     }
 }

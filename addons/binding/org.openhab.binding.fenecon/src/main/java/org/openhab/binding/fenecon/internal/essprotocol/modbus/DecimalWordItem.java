@@ -36,7 +36,12 @@ public class DecimalWordItem extends ModbusItem implements ModbusWordElement {
 
     @Override
     public void updateData(Register register) {
-        setState(new DecimalType(
-                new BigDecimal((register.getValue() - delta) * multiplier).setScale(2, BigDecimal.ROUND_HALF_UP)));
+        int value = register.getValue();
+        if (value == 0 && delta != 0) { // avoid e.g. "-10000" as result
+            setState(new DecimalType(0));
+        } else {
+            setState(new DecimalType(
+                    new BigDecimal((value - delta) * multiplier).setScale(2, BigDecimal.ROUND_HALF_UP)));
+        }
     }
 }
